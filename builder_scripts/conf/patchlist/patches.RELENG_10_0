@@ -58,3 +58,5 @@
 ~~brand.4th.diff~
 ~~loader.conf.diff~
 ~~makefile.inc1.diff~
+-p1~~pf_tags_alloc.diff~
+-p1~~sfxge_compile_i386.diff~
