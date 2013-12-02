@@ -47,9 +47,15 @@ END_OF_USAGE
 	exit 127
 fi
 
-# Source pfsense-build.conf variables
+# reset pfsense-build.conf
+rm -f pfsense-build.conf
+
+export BUILDER_SCRIPTS=`pwd`
+export BUILDER_TOOLS=${BUILDER_SCRIPTS}/..
+export BASE_DIR=${BUILDER_TOOLS}/..
+
+# import any pfsense_local vars (USE_SVNUP is used; idk about other vars)
 . ./pfsense_local.sh
-. ./pfsense-build.conf
 
 # Default SUPHOST
 if [ "$2" != "" ]; then 
@@ -95,14 +101,6 @@ if [ "$7" != "" ]; then
 fi
 
 HANDLED=false
-
-# Ensure file exists
-rm -f pfsense-build.conf
-touch pfsense-build.conf
-
-export BUILDER_SCRIPTS=`pwd`
-export BUILDER_TOOLS=${BUILDER_SCRIPTS}/..
-export BASE_DIR=${BUILDER_TOOLS}/..
 
 strip_pfsense_local() {
 	# Strip dynamic values
